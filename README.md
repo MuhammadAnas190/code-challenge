@@ -5,4 +5,5 @@ Clone the project in your laptop and open `index.html` in the browser to run the
 
 
 ## Design
-![image](https://github.com/MuhammadAnas190/code-challenge/assets/42142889/1bc8a9d5-bcc2-4782-94f1-bf7f93688c4a)
+![image](https://github.com/MuhammadAnas190/code-challenge/assets/42142889/4a69e11c-e9f7-4f55-b0e3-26c9539dd372)
+

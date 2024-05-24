@@ -26,14 +26,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function createMessageElement(message) {
   const messageElement = document.createElement("div");
-  messageElement.classList.add("message", "flex");
+  messageElement.classList.add("message", "flex", "flex-column");
+
+  const messageHeaderElement = document.createElement("div");
+  messageHeaderElement.classList.add(
+    "message-header",
+    "flex",
+    "flex-base",
+    "flex-row",
+    "w-100"
+  );
 
   const profileIconElement = document.createElement("i");
-  profileIconElement.classList.add("fa-regular", "fa-user");
+  profileIconElement.classList.add("fa-regular", "fa-user", "avatar");
+
+  const nameElement = document.createElement("span");
+  nameElement.classList.add("name");
+  nameElement.textContent = message.name;
 
   const messageContentElement = createMessageContentElement(message);
 
-  messageElement.appendChild(profileIconElement);
+  messageHeaderElement.appendChild(profileIconElement);
+  messageHeaderElement.appendChild(nameElement);
+
+  messageElement.appendChild(messageHeaderElement);
   messageElement.appendChild(messageContentElement);
 
   return messageElement;
@@ -41,7 +57,12 @@ function createMessageElement(message) {
 
 function createMessageContentElement(message) {
   const messageContentElement = document.createElement("div");
-  messageContentElement.classList.add("message-content", "flex", "flex-column");
+  messageContentElement.classList.add(
+    "message-content",
+    "flex",
+    "flex-column",
+    "w-100"
+  );
 
   const nameElement = document.createElement("span");
   nameElement.classList.add("name");
@@ -51,7 +72,6 @@ function createMessageContentElement(message) {
   textElement.classList.add("text");
   textElement.textContent = message.message;
 
-  messageContentElement.appendChild(nameElement);
   messageContentElement.appendChild(textElement);
 
   if (message.audio) {
@@ -69,18 +89,31 @@ function createAudioButtonElement() {
   return audioButtonElement;
 }
 
+// Scroll to top
 function scrollToTopOfDiv(divId) {
   const div = document.getElementById(divId);
   if (div) {
-    div.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-      inline: "nearest",
-    });
+    div.scrollTop = 0;
   }
 }
 
 const scrollToTopButton = document.getElementById("scrollToTopButton");
 scrollToTopButton.addEventListener("click", function () {
-  scrollToTopOfDiv("scrollToTopButton");
+  scrollToTopOfDiv("chat-messages");
+});
+
+// Toggle mic button
+const toggleMicButton = document.getElementById("toggleMicButton");
+
+toggleMicButton.addEventListener("click", function () {
+  // Toggle mic on/off by toggling CSS class
+  if (toggleMicButton.classList.contains("mic-off")) {
+    toggleMicButton.classList.remove("mic-off");
+    toggleMicButton.innerHTML = '<i class="fas fa-microphone-alt"></i>'; // Change icon to mic on
+    // Add functionality for mic on
+  } else {
+    toggleMicButton.classList.add("mic-off");
+    toggleMicButton.innerHTML = '<i class="fas fa-microphone-slash"></i>'; // Change icon to mic off
+    // Add functionality for mic off
+  }
 });

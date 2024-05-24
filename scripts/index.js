@@ -69,15 +69,18 @@ function createAudioButtonElement() {
   return audioButtonElement;
 }
 
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth", // Smooth scrolling behavior
-  });
+function scrollToTopOfDiv(divId) {
+  const div = document.getElementById(divId);
+  if (div) {
+    div.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  }
 }
 
 const scrollToTopButton = document.getElementById("scrollToTopButton");
-
 scrollToTopButton.addEventListener("click", function () {
-  scrollToTop();
+  scrollToTopOfDiv("scrollToTopButton");
 });

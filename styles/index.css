@@ -151,3 +151,9 @@ button {
   background: red;
   color: #ffffff;
 }
+
+.scroll-to-top-button {
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 14px;
+}
